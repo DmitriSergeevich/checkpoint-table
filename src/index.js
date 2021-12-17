@@ -1,17 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import ReactDom from 'react-dom';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css';
+import moment from 'moment';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDom.render(<App/>, document.getElementById('root'))
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+// let a = "2021-05-01"
+// let b = "17:15"
+// let c = "12:48"
+
+//  var ab = moment(`2021-05-01 17:15`);
+//  var ac = moment("2021-05-01 12:48");
+//  var ef = moment(`2021-05-01 14:15`);
+//  var eg = moment("2021-05-01 12:48");
+
+
+// var duration1 = moment.duration(ab.diff(ac));
+// var duration2 = moment.duration(ef.diff(eg));
+// console.log(moment.min(ab, ac))
+// console.log(moment.max(ab, ac))
+// console.log(duration.hours() + ':' + duration.minutes())
+//console.log(moment(0))
+//
+

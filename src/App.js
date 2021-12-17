@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios"
+import { useEffect, useState } from "react"
+import Table from "./components/Table"
+import Weather from "./components/Weather/Weather"
+import { dataHandler } from "./utils/utils"
 
-function App() {
+const App = () => {
+  const [dataTable, setDataTable] = useState([])
+  const [weatherDate, setWeatherDate] = useState(0)
+
+  useEffect(()=>{
+    axios.get('./MOCK_DOK.json')
+    .then(res => setDataTable(dataHandler(res.data)))
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {
+        weatherDate
+          ? <Weather date={weatherDate} setWeatherDate={setWeatherDate} />
+          : null
+      }
+      <Table dataTable={dataTable} setWeatherDate={setWeatherDate} />
+      
+      
+    </>
+  )
 }
 
 export default App;

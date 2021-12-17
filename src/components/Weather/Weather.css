@@ -1,0 +1,28 @@
+.weather {
+  position: fixed;
+  width: 700px;
+  height: 300px;
+  left: calc(100% / 2 - 350px);
+  top: calc(100% / 2 - 150px);
+  background-color: rgb(238, 239, 241);
+  z-index: 10;
+  border-radius: 25px;
+  box-shadow: 10px 10px 1px #7fb3fd;
+  padding: 50px 50px 20px 50px;
+}
+
+.mgb-50 {
+  margin-bottom: 30px;
+}
+
+.mgb-30 {
+  margin-bottom: 10px;
+}
+
+.weather-close {
+  cursor: pointer;
+  width: 35px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
