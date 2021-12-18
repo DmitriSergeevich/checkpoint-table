@@ -9,12 +9,17 @@ body {
 }
 .table-wrapper {
   overflow: auto scroll;
-  overflow-y: hidden;  
+  overflow-y: hidden;
+  cursor: grab; 
 }
 table {
   border-collapse: collapse;
   border-spacing: 0px;
-  width: calc(100% + 2000px);  
+  width: calc(100% + 2000px);
+  
+}
+.active {
+  cursor: grabbing;
 }
 tr {
   width: 1000px;

@@ -96,3 +96,35 @@ export const dataHandler = (dataSet) => {
     return { ...data, Days: workTimes, total: getTotalMonth(workTimes) }
   })
 }
+
+export const addDragToElement = (element) => {
+  if (!element) {
+    return
+  }
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  
+  element.addEventListener('mousedown', (e) => {
+    isDown = true;
+    element.classList.add('active');
+    startX = e.pageX - element.offsetLeft;
+    scrollLeft = element.scrollLeft;
+  });
+  element.addEventListener('mouseleave', () => {
+    isDown = false;
+    element.classList.remove('active');
+  });
+  element.addEventListener('mouseup', () => {
+    isDown = false;
+    element.classList.remove('active');
+  });
+
+  element.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - element.offsetLeft;
+    const walk = (x - startX) * 3; //scroll-fast
+    element.scrollLeft = scrollLeft - walk;  
+  });
+}

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { debounce } from "../utils/debounce";
-import { filter } from "../utils/utils";
+import { addDragToElement, filter } from "../utils/utils";
 import Pagination from "./Pagination/Pagination";
 import PersonRow from "./PersonRow/PersonRow";
 import SortingArrows from "./SortingArrows/SortingArrows";
@@ -13,13 +13,17 @@ const Table = ({dataTable, setWeatherDate}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentCol, setCurrentCol] = useState(null);
   const [sortDirection, setSortDirection] = useState(0);
+   
+  const table = useRef(null);
 
   const itemsPerPage = 10;
   const lastUserIndex = currentPage * itemsPerPage;
   const firstUserIndex = lastUserIndex - itemsPerPage;
   const currentItems = filtredData.slice(firstUserIndex, lastUserIndex);
-  const pagesCount = Math.ceil(filtredData.length / itemsPerPage); 
+  const pagesCount = Math.ceil(filtredData.length / itemsPerPage);
+  
   const debounceSetSearchTerm = debounce(setSearchTerm);
+  
   const stickyStyles = {
     stickyLeft: 'sticky sticky-left table-colored-item__blue',
     stickyRight: 'sticky sticky-right table-colored-item__blue'
@@ -74,17 +78,25 @@ const Table = ({dataTable, setWeatherDate}) => {
 
   useEffect(()=>{
     setFiltredData(filter(dataTable, searchTerm, currentCol, sortDirection))
-  },[dataTable, searchTerm, currentCol, sortDirection])
-
+  }, [dataTable, searchTerm, currentCol, sortDirection])
+  
+  useEffect(()=>{
+    addDragToElement(table.current)
+  }, [])
+  
   return(
     <>
-    <div className="table-wrapper">
+    <div className="table-wrapper" ref={table}>
       <table>
         <thead>
           <tr>
             <th className={`table-header-cell ${stickyStyles.stickyLeft}`}>
               <div>Users</div>
-              <input value={inputValue} onChange={inputHandler}></input>
+              <input
+                placeholder="нийти сотрудника"
+                value={inputValue}
+                onChange={inputHandler}>
+              </input>
             </th>
             {getDayOfTheMonth()}
             <th className={`table-header-cell ${stickyStyles.stickyRight}`}>
@@ -108,13 +120,14 @@ const Table = ({dataTable, setWeatherDate}) => {
         </tbody>
       </table>
     </div>
-    {pagesCount > 1 ? (
-      <Pagination
+    {
+      pagesCount > 1
+      ? (<Pagination
         currentPage={currentPage}
         pagesCount={pagesCount}
-        setCurrentPage={setCurrentPage}
-      />
-    ) : null}
+        setCurrentPage={setCurrentPage} />)
+      : null
+    }
     </>
   )
 }
