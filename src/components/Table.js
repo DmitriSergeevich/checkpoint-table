@@ -114,7 +114,7 @@ const Table = ({dataTable, setWeatherDate}) => {
         <tbody>
           {
             currentItems.map(data =>
-              <PersonRow data={data} styles={stickyStyles}/>
+              <PersonRow data={data} styles={stickyStyles} key={data.id}/>
             )
           }
         </tbody>

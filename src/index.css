@@ -15,8 +15,7 @@ body {
 table {
   border-collapse: collapse;
   border-spacing: 0px;
-  width: calc(100% + 2000px);
-  
+  width: calc(100% + 2000px);  
 }
 .active {
   cursor: grabbing;
@@ -48,7 +47,6 @@ th {
   align-items: center;
   justify-content: space-between;
 }
-
 .sort-arrow {
   margin-left: 10px;
   cursor: pointer;
@@ -62,12 +60,9 @@ th {
   min-width: 150px;
   width: fit-content;
 }
-
 .sticky-left {  
   left: 0px;  
 }
-
-
 .sticky-right {  
   right: 0px;  
 }
@@ -84,9 +79,8 @@ th {
   pointer-events: none;
 }
 .table-colored-item__blue {
-  /* background-color: #7fb3fd;   */
-  background-color: rgb(238, 239, 241);  
+ background-color: rgb(238, 239, 241);  
 }
 .mgt-50 {
-   margin-top: 50px;
+  margin-top: 50px;
 }
